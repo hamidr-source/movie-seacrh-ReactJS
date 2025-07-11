@@ -1,13 +1,34 @@
-import { fetchMovie } from "./store/MovieStore";
+import useMovieSearchStore from "./store/MovieStore";
 
 const Form = () => {
+  const searchItem = useMovieSearchStore((state) => state.searchItem);
+  const setSearchItem = useMovieSearchStore((state) => state.setSearchItem);
+  const searchMovies = useMovieSearchStore((state) => state.searchMovies);
+
   const handleChangeValue = (e) => {
-    fetchMovie(e.target.value);
+    setSearchItem(e.target.value);
+  };
+
+  const handleSearchMovies = () => {
+    searchMovies();
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      searchMovies();
+    }
   };
 
   return (
     <div>
-      <input type="text" onChange={handleChangeValue} id="value" />
+      <input
+        type="text"
+        value={searchItem}
+        onChange={handleChangeValue}
+        onKeyDown={handleKeyPress}
+        id="value"
+      />
+      <button onClick={handleSearchMovies}>search</button>
     </div>
   );
 };
