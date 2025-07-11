@@ -4,7 +4,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const fetchMovie = async (searchItem, set) => {
-  console.log("Set received in fetchMovie:", set);
   const url = `${baseUrl}?apikey=${apiKey}&s=${searchItem}`;
 
   if (!searchItem) {
@@ -21,7 +20,6 @@ export const fetchMovie = async (searchItem, set) => {
     }
     const data = await response.json();
     if (data.Response === "True") {
-      console.log(data);
       set({ movies: data.Search, loading: false, error: null });
     }
   } catch (error) {
