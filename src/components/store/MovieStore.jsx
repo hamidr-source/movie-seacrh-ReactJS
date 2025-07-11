@@ -36,6 +36,8 @@ const useMovieSearchStore = create((set, get) => ({
 
   setSearchItem: (term) => set({ searchItem: term }),
 
+  clearMovies: () => set({ movies: [], error: null }),
+
   searchMovies: async () => {
     const state = get();
     console.log(set);
