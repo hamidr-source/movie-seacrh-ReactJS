@@ -10,6 +10,7 @@ const Form = () => {
   const searchItem = useMovieSearchStore((state) => state.searchItem);
   const setSearchItem = useMovieSearchStore((state) => state.setSearchItem);
   const searchMovies = useMovieSearchStore((state) => state.searchMovies);
+  const movies = useMovieSearchStore((state) => state.movies)
 
   const handleChangeValue = (e) => {
     setSearchItem(e.target.value);
@@ -42,6 +43,7 @@ const Form = () => {
               handleChangeValue={handleChangeValue}
               handleKeyPress={handleKeyPress}
               handleSearchMovies={handleSearchMovies}
+              movies={movies}
             />
           </>
         )}

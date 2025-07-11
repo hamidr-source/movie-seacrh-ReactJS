@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ResultBox from "./ResultBox";
 
 const SearchBarModal = ({
   onClose,
@@ -6,6 +7,7 @@ const SearchBarModal = ({
   handleChangeValue,
   handleKeyPress,
   handleSearchMovies,
+  movies,
 }) => {
   const backdropVariants = {
     visible: { opacity: 1 },
@@ -70,6 +72,7 @@ const SearchBarModal = ({
           </button>
         </div>
       </motion.div>
+    <ResultBox movies={movies} />
     </div>
   );
 };
