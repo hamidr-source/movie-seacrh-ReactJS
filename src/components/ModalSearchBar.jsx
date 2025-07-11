@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const ModalSearchBar = ({
+const SearchBarModal = ({
   onClose,
   searchItem,
   handleChangeValue,
@@ -22,7 +22,7 @@ const ModalSearchBar = ({
       },
     },
     visible: {
-      y: "30%",
+      y: "0%",
       opacity: 1,
       transition: {
         type: "spring",
@@ -32,34 +32,41 @@ const ModalSearchBar = ({
       },
     },
   };
+
   return (
-    <div>
+    <div className="fixed inset-0 z-40 flex flex-col items-center justify-start">
       <motion.div
-        className="fixed inset-0 bg-black/50 z-40"
+        className="absolute inset-0 bg-black bg-opacity-50"
         variants={backdropVariants}
         initial="hidden"
         animate="visible"
         exit="hidden"
         onClick={onClose}
       />
+
       <motion.div
-        className="p-4 rounded shadow-md text-xl fixed top-0 left-0 w-full z-50 "
+        className="w-full max-w-2xl bg-white p-4 shadow-lg rounded-b-lg relative z-50 transform pt-2 sm:pt-4"
         variants={searchBarVariants}
         initial="hidden"
         animate="visible"
         exit="hidden"
       >
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center max-w-xl mx-auto">
           <input
             type="text"
             value={searchItem}
             onChange={handleChangeValue}
             onKeyDown={handleKeyPress}
             id="value"
-            className="w-1/2 h-10 outline-none p-2 rounded-lg border"
+            placeholder="Search for movies..."
+            className="w-full h-12 px-4 pr-24 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
           />
-          <button className="absolute right-4" onClick={handleSearchMovies}>
-            search
+
+          <button
+            onClick={handleSearchMovies}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 md:py-2 md:px-6 rounded-full transition duration-300 ease-in-out"
+          >
+            Search
           </button>
         </div>
       </motion.div>
@@ -67,4 +74,4 @@ const ModalSearchBar = ({
   );
 };
 
-export default ModalSearchBar;
+export default SearchBarModal;
