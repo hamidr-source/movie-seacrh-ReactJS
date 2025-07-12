@@ -1,5 +1,4 @@
 const ResultBox = ({ movies }) => {
-
   return (
     <div className="fixed top-24 left-1/2 -translate-x-1/2 w-full max-w-2xl bg-white p-4 shadow-xl rounded-lg z-[51] overflow-y-auto max-h-96 custom-scrollbar">
       {movies && movies.length > 0 ? (
@@ -7,7 +6,7 @@ const ResultBox = ({ movies }) => {
           {movies.map((movie) => (
             <li
               key={movie.imdbID}
-              className="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200 ease-in-out"
+              className="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200 ease-in-out cursor-pointer"
               onClick={() => console.log(movie.imdbID)}
             >
               <img

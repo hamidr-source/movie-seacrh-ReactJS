@@ -1,13 +1,14 @@
 import { useState } from "react";
 import useMovieSearchStore from "./store/MovieStore";
-import { AnimatePresence } from "framer-motion"; 
+import { AnimatePresence } from "framer-motion";
 import SearchButton from "./SearchButton";
-import ResultBox from "./ResultBox"; 
+import ResultBox from "./ResultBox";
 import ModalSearchBar from "./ModalSearchBar";
+import { useNotifications } from "@toolpad/core/useNotifications";
 
 const Form = () => {
   const [openSearchBar, setOpenSearchBar] = useState(false);
-
+  const notifications = useNotifications();
   const searchItem = useMovieSearchStore((state) => state.searchItem);
   const setSearchItem = useMovieSearchStore((state) => state.setSearchItem);
   const searchMovies = useMovieSearchStore((state) => state.searchMovies);
@@ -19,6 +20,13 @@ const Form = () => {
   };
 
   const handleSearchMovies = () => {
+    if (searchItem.trim() === "") {
+      notifications.show("Please enter a search term.", {
+        severity: "warning",
+        autoHideDuration: 3000,
+      });
+      return;
+    }
     searchMovies();
   };
 
@@ -35,7 +43,7 @@ const Form = () => {
   };
 
   return (
-    <>
+    <div className="flex justify-center w-screen">
       <SearchButton onOpenSearchBar={() => setOpenSearchBar(true)} />
 
       <AnimatePresence>
@@ -53,7 +61,7 @@ const Form = () => {
       <AnimatePresence>
         {openSearchBar && searchItem && <ResultBox movies={movies} />}
       </AnimatePresence>
-    </>
+    </div>
   );
 };
 
