@@ -4,7 +4,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const fetchMovie = async (searchItem, set) => {
-  const url = `${baseUrl}?apikey=${apiKey}&s=${searchItem}&plot=full`;
+  const url = `${baseUrl}?apikey=${apiKey}&s=${searchItem}`;
 
   if (!searchItem) {
     set({ movies: [], loading: false, error: null });
@@ -20,11 +20,19 @@ export const fetchMovie = async (searchItem, set) => {
     }
     const data = await response.json();
     if (data.Response === "True") {
-      set({ movies: data.Search, loading: false, error: null });
+      set({
+        movies: data.Search,
+        loading: false,
+        error: null,
+      });
     }
   } catch (error) {
     console.error("Fetch movie error:", error.message);
-    set({ movies: [], loading: false, error: error.message });
+    set({
+      movies: [],
+      loading: false,
+      error: error.message || "An unexpected error occurred.",
+    });
   }
 };
 
@@ -40,7 +48,6 @@ const useMovieSearchStore = create((set, get) => ({
 
   searchMovies: async () => {
     const state = get();
-    console.log(set);
     await fetchMovie(state.searchItem, set);
   },
 }));

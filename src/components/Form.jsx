@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useMovieSearchStore from "./store/MovieStore";
+import useMovieSearchStore from "../store/MovieStore";
 import { AnimatePresence } from "framer-motion";
 import SearchButton from "./SearchButton";
 import ResultBox from "./ResultBox";
@@ -14,6 +14,8 @@ const Form = () => {
   const searchMovies = useMovieSearchStore((state) => state.searchMovies);
   const movies = useMovieSearchStore((state) => state.movies);
   const clearMovies = useMovieSearchStore((state) => state.clearMovies);
+  const loading = useMovieSearchStore((state) => state.loading);
+  const error = useMovieSearchStore((state) => state.error);
 
   const handleChangeValue = (e) => {
     setSearchItem(e.target.value);
@@ -59,7 +61,9 @@ const Form = () => {
       </AnimatePresence>
 
       <AnimatePresence>
-        {openSearchBar && searchItem && <ResultBox movies={movies} />}
+        {openSearchBar && searchItem && (
+          <ResultBox movies={movies} loading={loading} error={error} />
+        )}
       </AnimatePresence>
     </div>
   );
