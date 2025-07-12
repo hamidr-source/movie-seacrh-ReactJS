@@ -4,7 +4,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const fetchMovie = async (searchItem, set) => {
-  const url = `${baseUrl}?apikey=${apiKey}&s=${searchItem}`;
+  const url = `${baseUrl}?apikey=${apiKey}&s=${searchItem}&plot=full`;
 
   if (!searchItem) {
     set({ movies: [], loading: false, error: null });

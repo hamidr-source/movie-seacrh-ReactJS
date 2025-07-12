@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 const SearchButton = ({ onOpenSearchBar }) => {
   return (
     <div className="flex justify-center items-center p-10">
-      <motion.button
+      <motion.div
         className="focus:outline-none focus:ring-4 focus:ring-green-400 focus:ring-opacity-75 rounded-full"
         animate={{
           x: [2, 3, -3, 3, -3, 2],
@@ -41,7 +41,7 @@ const SearchButton = ({ onOpenSearchBar }) => {
           <SearchIcon sx={{ mr: 1 }} />
           Search
         </Fab>
-      </motion.button>
+      </motion.div>
     </div>
   );
 };
