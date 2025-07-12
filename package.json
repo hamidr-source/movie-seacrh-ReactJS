@@ -2,6 +2,7 @@
   "name": "movie-search-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://hamidr-source.github.io/movie-seacrh-ReactJS",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -20,8 +21,7 @@
     "react-router-dom": "^7.6.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "zustand": "^5.0.6",
-    "homepage": "https://hamidr-source.github.io/movie-seacrh-ReactJS"
+    "zustand": "^5.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
