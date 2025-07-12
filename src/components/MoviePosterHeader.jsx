@@ -1,4 +1,7 @@
 import AnimatedBackGround from "./AnimatedBackGround";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useState } from "react";
 
 const MoviePosterHeader = ({
   posterUrl,
@@ -9,6 +12,7 @@ const MoviePosterHeader = ({
   ageRestriction,
   country,
 }) => {
+  const [liked, setLiked] = useState(false);
   return (
     <div
       className="relative w-full overflow-hidden rounded-b-lg
@@ -42,8 +46,12 @@ const MoviePosterHeader = ({
           </div>
         </div>
 
-        <button className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 bg-red-600 hover:bg-red-700 text-white text-sm sm:text-base py-2 px-3 sm:px-4 rounded-full shadow-md transition duration-300">
-          
+        <button className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 bg-white hover:bg-slate-200 text-white text-sm sm:text-base py-2 px-3 sm:px-4 rounded-full shadow-md transition duration-300">
+          {liked ? (
+            <FavoriteIcon className="text-red-600" onClick={() => setLiked(false)} />
+          ) : ( 
+            <FavoriteBorderIcon className="text-red-600" onClick={() => setLiked(true)} />
+          )}
         </button>
       </div>
     </div>
