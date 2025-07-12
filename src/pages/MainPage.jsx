@@ -1,12 +1,12 @@
 import { useState } from "react";
 import useMovieSearchStore from "../store/MovieStore";
 import { AnimatePresence } from "framer-motion";
-import SearchButton from "./SearchButton";
-import ResultBox from "./ResultBox";
-import ModalSearchBar from "./ModalSearchBar";
+import SearchButton from "../components/SearchButton";
+import ResultBox from "../components/ResultBox";
+import ModalSearchBar from "../components/ModalSearchBar";
 import { useNotifications } from "@toolpad/core/useNotifications";
 
-const Form = () => {
+const MainPage = () => {
   const [openSearchBar, setOpenSearchBar] = useState(false);
   const notifications = useNotifications();
   const searchItem = useMovieSearchStore((state) => state.searchItem);
@@ -62,11 +62,16 @@ const Form = () => {
 
       <AnimatePresence>
         {openSearchBar && searchItem && (
-          <ResultBox movies={movies} loading={loading} error={error} />
+          <ResultBox
+            movies={movies}
+            loading={loading}
+            error={error}
+            onRouteChange={clearMovies}
+          />
         )}
       </AnimatePresence>
     </div>
   );
 };
 
-export default Form;
+export default MainPage;

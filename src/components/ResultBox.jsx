@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import SpinningLoader from "./SpinningLoader ";
 
-const ResultBox = ({ movies, loading, error }) => {
+const ResultBox = ({ movies, loading, error, onRouteChange }) => {
   return (
     <div className="fixed top-24 left-1/2 -translate-x-1/2 w-full max-w-2xl bg-white p-4 shadow-xl rounded-lg z-[51] overflow-y-auto max-h-96 custom-scrollbar">
       {loading ? (
@@ -16,23 +17,25 @@ const ResultBox = ({ movies, loading, error }) => {
       ) : movies && movies.length > 0 ? (
         <ul className="space-y-4">
           {movies.map((movie) => (
-            <li
+            <Link
+              to={`/movie/${movie.imdbID}`}
               key={movie.imdbID}
-              className="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200 ease-in-out cursor-pointer"
-              onClick={() => console.log(movie.imdbID)}
+              onClick={onRouteChange}
             >
-              <img
-                src={movie.Poster !== "N/A" ? movie.Poster : ""}
-                alt={movie.Title}
-                className="w-16 h-24 object-cover rounded-md mr-4 flex-shrink-0 shadow-md"
-              />
-              <div className="flex-grow">
-                <h3 className="text-xl font-bold text-gray-800 leading-tight mb-1">
-                  {movie.Title}
-                </h3>
-                <p className="text-sm text-gray-500">{movie.Year}</p>
-              </div>
-            </li>
+              <li className="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200 ease-in-out cursor-pointer">
+                <img
+                  src={movie.Poster !== "N/A" ? movie.Poster : ""}
+                  alt={movie.Title}
+                  className="w-16 h-24 object-cover rounded-md mr-4 flex-shrink-0 shadow-md"
+                />
+                <div className="flex-grow">
+                  <h3 className="text-xl font-bold text-gray-800 leading-tight mb-1">
+                    {movie.Title}
+                  </h3>
+                  <p className="text-sm text-gray-500">{movie.Year}</p>
+                </div>
+              </li>
+            </Link>
           ))}
         </ul>
       ) : (
