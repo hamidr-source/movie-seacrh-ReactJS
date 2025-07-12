@@ -16,7 +16,7 @@ const AnimatedBackGround = ({ imageUrl }) => {
   return (
     <div className="absolute inset-0 overflow-hidden rounded-b-lg">
       <motion.div
-        className="w-screen h-screen bg-cover bg-center"
+        className="w-full h-full bg-cover bg-center"
         style={{ backgroundImage: `url(${imageUrl})` }}
         variants={containerVariants}
         initial="initial"

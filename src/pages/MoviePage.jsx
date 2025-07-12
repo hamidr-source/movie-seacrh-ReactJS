@@ -101,7 +101,7 @@ const MoviePage = () => {
         <p className="text-gray-700 mb-6">Director: {movie.Director}</p>
 
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Watch</h2>
-        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition duration-300 mb-6">
+        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition duration-300 mb-6">
           Choose
         </button>
       </div>
